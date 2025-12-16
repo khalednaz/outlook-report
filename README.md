@@ -24,7 +24,7 @@ GET https://<BASE_URL>/report?rid=<RID>
 
 ### Outlook add-in: extracting the report URL (no hardcoded domain)
 
-The Outlook add-in extractes the reporting URL using multiple fallback strategies to support different environments and template formats.
+The Outlook add-in extractes/finds the reporting URL using multiple fallback strategies to support different environments and template formats.
 **commands.js**
 ```js
 function resolveReportUrl_(combinedBody) {
