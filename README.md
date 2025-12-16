@@ -4,7 +4,7 @@ This document explains how the Brixeon Outlook Report Phishing add-in integrates
 
 ## 1. How the logic works with the phishing system
 
-### High-level flow
+### Flow
 
 1. A user opens an email in Outlook (Web or Desktop).
 2. The user clicks **Report Phishing** from the Brixeon Outlook add-in.
