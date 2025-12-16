@@ -1,6 +1,6 @@
 # Brixeon Outlook Report Phishing Add-in
 
-This document explains how the Brixeon Outlook Report Phishing add-in integrates with the phishing system, how users report emails, how email templates must be configured, and how the add-in is deployed organization-wide in Microsoft 365.
+This document explains how the Brixeon Outlook Report Phishing add-in integrates with the phishing system, how users report emails, how email templates must be configured, and how the add-in is deployed organization-wide in Microsoft 365 (**1 Logic**, **2 Usage**, **3 Email Template Requirements**, **4 Microsoft 365 Deployment**).
 
 ## 1. How the logic works with the phishing system
 
