@@ -127,7 +127,7 @@ The add-in provides a clear message upon completion:
 
 ## 3. Email Template Requirement
 ### Required Marker
-Every phishing email template must include the following marker to be compatible with the add-in:
+Every phishing email template must include the following hidden marker to be compatible with the add-in (Similar to hidden image tracker):
 
 ```html
 <div style="display:none; font-size:0; line-height:0; max-height:0; overflow:hidden;">
