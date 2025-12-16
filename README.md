@@ -121,12 +121,8 @@ The add-in provides a clear message upon completion:
 
 <img width="577" height="305" alt="Screenshot 2025-12-16 141327" src="https://github.com/user-attachments/assets/f1f8d1f1-a428-4982-b6c6-08780d6a6f5a" />
 
-Failure
+**Failure:** Couldn’t find a report link — this usually means the email template is missing the required reporting marker.
 
-Plaintext
-
-Couldn’t find a report link
-[!NOTE] Failures typically indicate that the email template is missing the required reporting marker.
 
 ## 3. Email Template Requirement
 ### Required Marker
