@@ -1,6 +1,6 @@
 # Brixeon Outlook Report Phishing Add-in
 
-This document explains how the Brixeon Outlook Report Phishing add-in integrates with the phishing system, how users report emails, how email templates must be configured, and how the add-in is deployed organization-wide in Microsoft 365 (**1 Logic**, **2 Usage**, **3 Email Template Requirements**, **4 Microsoft 365 Deployment**).
+This document explains how the Brixeon Outlook Report Phishing add-in integrates with the phishing system, how users report emails, how email templates must be configured, and how the add-in is deployed organization-wide in Microsoft 365 (**1. Logic**, **2. Usage**, **3. Email Template Requirements**, **4. Microsoft 365 Deployment**)
 
 ## 1. How the logic works with the phishing system
 
@@ -145,24 +145,47 @@ Result: https://example.com/report?rid=abc123
 Result: https://example.com/login?rid=abc123/report?rid=abc123 (Invalid)
 
 ## 4. Deployment (Microsoft 365 Admin Console)
-### Centralized Deployment
-Administrators should deploy the add-in via the Microsoft 365 Admin Center:
 
-Settings → Integrated apps → Add-ins → Deploy Add-in → Upload custom apps
+### Centralized Deployment
+
+Follow these steps to deploy the add-in organization-wide via the Microsoft 365 Admin Center:
+
+1. Open the **Microsoft 365 Admin Center**.
+2. Go to **Settings** → **Integrated apps**.
+3. Select **Add-ins**.
+4. Click **Deploy Add-in**.
+5. Choose **Upload custom apps**.
+6. Upload the provided `manifest.xml` file.
+
+---
 
 ### Recommended Settings
-During the deployment wizard, ensure the following are selected:
 
-Manifest: Upload the provided manifest.xml.
+During the deployment wizard, configure the following options:
 
-Target: Select "Entire organization".
+1. **Manifest**
+   - Upload the provided `manifest.xml`.
 
-Installation: "Force install" (Recommended).
+2. **Target**
+   - Select **Entire organization**.
+
+3. **Installation**
+   - Select **Force install** (recommended).
+
+---
 
 ### Availability Timeline
-Propagation: Global deployment can take up to 24 hours.
 
-Client Refresh: Users may need to restart Outlook Desktop or refresh Outlook Web to see the changes.
+After deployment:
+
+1. **Propagation**
+   - Organization-wide deployment can take up to **24 hours** to complete.
+
+2. **Client Refresh**
+   - Users may need to:
+     - Restart **Outlook Desktop**, or
+     - Refresh **Outlook Web**
+   to see the add-in.
 
 ## Summary
 Endpoint: Reports via /report?rid=...
