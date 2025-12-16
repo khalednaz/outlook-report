@@ -109,7 +109,7 @@ The campaign results dashboard shows the email as Reported.
 3. Click the "Brixeon – Report Phishing" button.
    
    <img width="1288" height="815" alt="Screenshot 2025-12-16 140828" src="https://github.com/user-attachments/assets/bc960f34-d43a-4153-9d6f-eec2a988e86e" />
-   **Or**
+  **Or from Apps Icon**
    <img width="1903" height="936" alt="Screenshot 2025-12-16 154441" src="https://github.com/user-attachments/assets/3f8f5f8b-3e4f-467c-a89b-90a56c0f3ddc" />
 
    
