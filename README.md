@@ -155,9 +155,11 @@ Follow these steps to deploy the add-in organization-wide via the Microsoft 365 
    
    <img width="1899" height="940" alt="Screenshot 2025-12-16 144219" src="https://github.com/user-attachments/assets/cc00984c-7fdc-41df-a545-ebafb890590e" />
 
+
 2. Go to **Settings** → **Integrated apps**.
    
    <img width="1917" height="935" alt="Screenshot 2025-12-16 144504" src="https://github.com/user-attachments/assets/05a42468-14c5-4102-b5d2-f444a9339243" />
+
    
 3. Select **Upload Custom Apps**.
    
@@ -168,27 +170,34 @@ Follow these steps to deploy the add-in organization-wide via the Microsoft 365 
    
    <img width="1907" height="941" alt="Screenshot 2025-12-16 144854" src="https://github.com/user-attachments/assets/1c0106f3-9408-4d0a-a1d2-f2b32c495a83" />
 
+
 5. Upload the provided `manifest.xml` file and click next.
    
    <img width="1902" height="938" alt="Screenshot 2025-12-16 150132" src="https://github.com/user-attachments/assets/6cb7fe6a-6ff3-4570-8b95-dd52b3d557ab" />
 
+
 6. Select **Entire organization** and click next.
     
    <img width="1913" height="942" alt="Screenshot 2025-12-16 150249" src="https://github.com/user-attachments/assets/cc3107df-a826-40fb-bb1a-713eb594e44e" />
+
 
 7. Accept permissions requests by clicking next and then click finish to deploy in the next step.
     
    <img width="1913" height="937" alt="Screenshot 2025-12-16 151746" src="https://github.com/user-attachments/assets/dd945fb8-8563-4cce-814c-e68bb068ef76" />
 
 
+
 **Availability** Organization-wide deployment can take up to **24 hours**; users may need to restart **Outlook Desktop** or refresh **Outlook Web** to see the add-in.
 
-## Summary
-Endpoint: Reports via /report?rid=...
+## Add-in File Structure
 
-Template Marker: BRIXEON_REPORT_URL:{{.BaseURL}}/report?rid={{.RId}}
+- **manifest.xml** – Defines the add-in identity, permissions, supported hosts, UI buttons, icons, and which pages/scripts Outlook should load.
+- **commands.html** – Lightweight loader page that loads Office.js and the command logic when the user clicks the add-in button.
+- **commands.js** – Core logic that reads the email content, extracts the report URL, calls the phishing system, and shows success or failure messages.
+- **taskpane.html** – Minimal task pane/read surface referenced by the manifest, mainly to satisfy Outlook UI requirements.
+- **assets/** – Contains icon images used for the toolbar button and add-in listing (16/32/80/128 px).
 
-Availability: Org-wide rollout completes within 24 hours.
+**Note:** All add-in files are hosted over HTTPS at **https://brixeon.com/outlook-addin/**.
 
 
 
