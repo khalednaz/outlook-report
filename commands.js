@@ -1,13 +1,10 @@
 /* **************************************
  * Brixeon - Outlook Report Phishing Add-in (Office.js)
  * Goal: Register "Reported" event in campaign results (RID-based)
- * - No config endpoint
- * - No org token
- * - No hardcoded phish domain (read from template marker / decoded links)
- *
- * Template marker recommended:
- *   BRIXEON_REPORT_URL:{{.URL}}/report?rid={{.RId}}
- * (also supports BRIXEON_REPORT_URL=...)
+ 
+ * Template marker:
+ *   BRIXEON_REPORT_URL:{{.BaseUrl}}/report?rid={{.RId}}
+ 
  ************************************** */
 
 (function () {
