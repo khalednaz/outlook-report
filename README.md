@@ -13,20 +13,18 @@ This document explains how the Brixeon Outlook Report Phishing add-in integrates
 /report?rid=<RID>
 ```
 4. The add-in sends a request to the phishing system:
-
+ ```js
 GET https://<BASE_URL>/report?rid=<RID>
+```
 
-csharp
-Copy code
-
-6. The phishing system:
+5. The phishing system:
 - Resolves the RID
 - Loads the correct campaign result
 - Marks the email as **Reported**
 
-### Outlook add-in: resolving the report URL (no hardcoded domain)
+### Outlook add-in: extracting the report URL (no hardcoded domain)
 
-The Outlook add-in resolves the reporting URL using multiple fallback strategies to support different environments and template formats.
+The Outlook add-in extractes the reporting URL using multiple fallback strategies to support different environments and template formats.
 
 ```js
 function resolveReportUrl_(combinedBody) {
@@ -45,10 +43,11 @@ var base = getBaseUrl_(extractDirectUrl_(ridLink));
 
 return base.replace(/\/+$/, "") + "/report?rid=" + encodeURIComponent(rid);
 }
+```
+
 Once the URL is resolved, the add-in calls the endpoint:
 
-js
-Copy code
+```js
 function hitReportEndpoint_(url, cb) {
   fetch(url, {
     method: "GET",
@@ -65,7 +64,7 @@ function hitReportEndpoint_(url, cb) {
 }
 
 ```
-```text
+
 Phishing system: how /report?rid=... is processed
 
 When the phishing system receives the /report request:
@@ -78,7 +77,7 @@ When the phishing system receives the /report request:
 - A Reported event is created
 - The result status is updated and saved
 
-
+```js
 func ReportHandler(w http.ResponseWriter, r *http.Request) {
   r, err := setupContext(r)
 
@@ -88,19 +87,19 @@ func ReportHandler(w http.ResponseWriter, r *http.Request) {
   w.WriteHeader(http.StatusNoContent)
 }
 ```
-go
-Copy code
+```js
 func (r *Result) HandleEmailReport(details EventDetails) error {
   event, err := r.createEvent(EventReported, details)
   r.Reported = true
   r.ModifiedDate = event.Time
   return db.Save(r).Error
 }
+```
 End result
 
 The campaign results dashboard shows the email as Reported.
 
-2. How a user reports an email (usage)
+## 2. How a user reports an email (usage)
 User steps (Outlook)
 Open the suspicious email in Outlook.
 
