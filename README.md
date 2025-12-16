@@ -121,6 +121,7 @@ The add-in provides a clear message upon completion:
 
 <img width="577" height="305" alt="Screenshot 2025-12-16 141327" src="https://github.com/user-attachments/assets/f1f8d1f1-a428-4982-b6c6-08780d6a6f5a" />
 
+
 **Note:** On failure, a message will appear saying “Couldn’t find a report link”. This usually means the email template is missing the required reporting marker.
 
 
@@ -128,7 +129,8 @@ The add-in provides a clear message upon completion:
 ### Required Marker
 Every phishing email template must include the following marker to be compatible with the add-in:
 
-```js <div style="display:none; font-size:0; line-height:0; max-height:0; overflow:hidden;">
+```html
+<div style="display:none; font-size:0; line-height:0; max-height:0; overflow:hidden;">
   BRIXEON_REPORT_URL:{{.BaseURL}}/report?rid={{.RId}}
 </div>
 ```
