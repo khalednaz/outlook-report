@@ -66,26 +66,21 @@ function hitReportEndpoint_(url, cb) {
     .catch(function (err) {
       cb({ ok: false, code: 0, err: String(err) });
     });
-}
+} 
+```text
 Phishing system: how /report?rid=... is processed
+
 When the phishing system receives the /report request:
 
-The rid parameter is extracted from the query string.
+- The rid parameter is extracted from the query string
+- The system loads:
+  - The related campaign
+  - The recipient
+  - The campaign result
+- A Reported event is created
+- The result status is updated and saved
 
-The system loads:
 
-The related campaign
-
-The recipient
-
-The campaign result
-
-A Reported event is created.
-
-The result status is updated and saved.
-
-go
-Copy code
 func ReportHandler(w http.ResponseWriter, r *http.Request) {
   r, err := setupContext(r)
 
