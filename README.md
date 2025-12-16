@@ -112,19 +112,15 @@ The campaign results dashboard shows the email as Reported.
 
 5. Wait for the add-in to process:
 
-     1. Scans the email body for the report URL.
-     2. Contacts the phishing system.
-     3. Displays immediate feedback.
+    - Scans the email body for the report URL.
+    - Contacts the phishing system.
+    - Displays immediate feedback.
 
 ### User Feedback Notifications
-The add-in provides clear visual cues upon completion:
+The add-in provides a clear message upon completion:
 
+<img width="577" height="305" alt="Screenshot 2025-12-16 141327" src="https://github.com/user-attachments/assets/f1f8d1f1-a428-4982-b6c6-08780d6a6f5a" />
 
-Success
-
-Plaintext
-
-Reported successfully
 Failure
 
 Plaintext
