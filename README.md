@@ -1,65 +1,35 @@
-Brixeon Outlook Add-in (Report Phishing)
+# Brixeon Outlook Add-in (Report Phishing)
 
-This Outlook add-in allows users to report simulated phishing emails directly from Outlook.
-It integrates with the phishing system using the same reporting logic used across Brixeon platforms.
+This add-in replicates your Gmail add-on behavior for Outlook using Office.js:
 
-How it works
-High-level flow
+- Reads the opened message body (HTML + Text)
+- Resolves a report URL using the same priority:
+  1) `BRIXEON_REPORT_URL:` or `BRIXEON_REPORT_URL=`
+  2) any URL containing `/report?rid=`
+  3) extract `rid=` + base domain from any rid-link, then build `<base>/report?rid=<rid>`
+- Calls `GET <base>/report?rid=...`
+- Shows a success/fail notification
 
-User opens an email in Outlook (Web or Desktop)
+## Files
+- `manifest.xml` (upload/sideload this into Outlook)
+- `commands.html` (loads Office.js + commands.js)
+- `commands.js` (core logic)
+- `taskpane.html` (simple read view pane; required by manifest)
+- `assets/` icons (placeholders)
 
-User clicks Report Phishing
+## Setup
+1. Host this folder on HTTPS (ngrok is fine). Example URL:
+   `https://abcd1234.ngrok.app`
+2. Edit `manifest.xml` and replace:
+   `https://YOUR_ADDIN_HOST`
+   with your real HTTPS host.
+3. Sideload `manifest.xml` in Outlook:
+   - Outlook Web: Settings -> Mail -> Customize actions -> Add-ins -> Add a custom add-in -> From file
+   - Outlook Desktop: File -> Manage Add-ins (opens web UI) then same steps
 
-The add-in reads the email body (HTML + Text)
+## Email template marker
+Add this to the email template (recommended):
+`BRIXEON_REPORT_URL:{{.URL}}/report?rid={{.RId}}`
 
-A reporting URL is resolved without hardcoding the domain
-
-The add-in calls:
-
-GET <base>/report?rid=<rid>
-
-
-The phishing system resolves the result and marks it as Reported
-
-Resolving the report URL
-
-The add-in resolves the report URL using the following priority:
-
-A marker in the email body
-
-BRIXEON_REPORT_URL:
-
-BRIXEON_REPORT_URL=
-
-Any URL containing:
-
-/report?rid=
-
-
-Fallback:
-
-Extract rid= from any link
-
-Extract the base domain
-
-Build:
-
-<base>/report?rid=<rid>
-
-Core logic (commands.js)
-function resolveReportUrl_(combinedBody) {
-  // 1) Marker-based resolution
-  var marker = extractMarkerUrlAny_(combinedBody, "BRIXEON_REPORT_URL");
-  if (marker) return normalizeReportUrl_(marker);
-
-  // 2) Direct /report?rid= link
-  var reportLink = findFirstUrlContaining_(combinedBody, "/report?rid=");
-  if (reportLink) return normalizeReportUrl_(extractDirectUrl_(reportLink));
-
-  // 3) Fallback: build report URL from rid
-  var rid = extractRidFromText_(combinedBody);
-  var ridLink = findFirstUrlContainingRid_(combinedBody);
-  var base =
-
-
-ChatGPT can make mistakes. Check important info.
+GUID (Add-in Id) used in this package:
+96726257-12df-4ef1-b166-e35f5188b87a
