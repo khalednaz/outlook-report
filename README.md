@@ -12,9 +12,7 @@ This document explains how the Brixeon Outlook Report Phishing add-in integrates
  ```js
 /report?rid=<RID>
 ```
-
-5. No domain is hardcoded.
-6. The add-in sends a request to the phishing system:
+4. The add-in sends a request to the phishing system:
 
 GET https://<BASE_URL>/report?rid=<RID>
 
