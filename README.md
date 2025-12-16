@@ -25,7 +25,7 @@ GET https://<BASE_URL>/report?rid=<RID>
 ### Outlook add-in: extracting the report URL (no hardcoded domain)
 
 The Outlook add-in extractes the reporting URL using multiple fallback strategies to support different environments and template formats.
-
+**commands.js**
 ```js
 function resolveReportUrl_(combinedBody) {
 // (1) Marker: BRIXEON_REPORT_URL:... or BRIXEON_REPORT_URL=...
@@ -46,7 +46,7 @@ return base.replace(/\/+$/, "") + "/report?rid=" + encodeURIComponent(rid);
 ```
 
 Once the URL is resolved, the add-in calls the endpoint:
-
+**commands.js**
 ```js
 function hitReportEndpoint_(url, cb) {
   fetch(url, {
@@ -76,7 +76,7 @@ When the phishing system receives the /report request:
   - The campaign result
 - A Reported event is created
 - The result status is updated and saved
-
+**controllers/phish.go**
 ```js
 func ReportHandler(w http.ResponseWriter, r *http.Request) {
   r, err := setupContext(r)
@@ -87,6 +87,7 @@ func ReportHandler(w http.ResponseWriter, r *http.Request) {
   w.WriteHeader(http.StatusNoContent)
 }
 ```
+**controllers/result.go**
 ```js
 func (r *Result) HandleEmailReport(details EventDetails) error {
   event, err := r.createEvent(EventReported, details)
