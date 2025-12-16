@@ -1,4 +1,4 @@
-# Brixeon Outlook Report Phishing Add-in
+<img width="1913" height="937" alt="image" src="https://github.com/user-attachments/assets/576c3740-6b56-4e94-afc6-c61a7b9c2b28" /><img width="1913" height="942" alt="image" src="https://github.com/user-attachments/assets/975b6262-8929-4b46-8a67-6d18de18818d" /><img width="1907" height="941" alt="image" src="https://github.com/user-attachments/assets/c313c22d-7b01-4b15-aec6-562cc9f959c8" /># Brixeon Outlook Report Phishing Add-in
 
 This document explains how the Brixeon Outlook Report Phishing add-in integrates with the phishing system, how users report emails, how email templates must be configured, and how the add-in is deployed organization-wide in Microsoft 365 (**1. Logic**, **2. Usage**, **3. Email Template Requirements**, **4. Microsoft 365 Deployment**)
 
@@ -148,49 +148,36 @@ Result: https://example.com/login?rid=abc123/report?rid=abc123 (Invalid)
 
 ### Centralized Deployment
 
-Follow these steps to deploy the add-in organization-wide via the Microsoft 365 Admin Center:
+Follow these steps to deploy the add-in organization-wide via the Microsoft 365 Admin Center  
+(**administrator privileges are required**):
 
-1. Open the **Microsoft 365 Admin Center**.
-2. Go to **Settings** → **Integrated apps**.
-3. Select **Add-ins**.
-4. Click **Deploy Add-in**.
-5. Choose **Upload custom apps**.
-6. Upload the provided `manifest.xml` file.
+1. Open the **Microsoft 365 Admin Center**: https://admin.microsoft.com
+   <img width="1899" height="940" alt="Screenshot 2025-12-16 144219" src="https://github.com/user-attachments/assets/cc00984c-7fdc-41df-a545-ebafb890590e" />
 
----
+3. Go to **Settings** → **Integrated apps**.
+   <img width="1917" height="935" alt="Screenshot 2025-12-16 144504" src="https://github.com/user-attachments/assets/05a42468-14c5-4102-b5d2-f444a9339243" />
+   
+5. Select **Upload Custom Apps**.
+   <img width="1911" height="937" alt="Screenshot 2025-12-16 144802" src="https://github.com/user-attachments/assets/c582038a-f8d0-40e4-b9ef-2659567a9528" />
 
-### Recommended Settings
+   
+7. Select **App Type** as **Office Add-in**.
+   <img width="1907" height="941" alt="Screenshot 2025-12-16 144854" src="https://github.com/user-attachments/assets/1c0106f3-9408-4d0a-a1d2-f2b32c495a83" />
 
-During the deployment wizard, configure the following options:
+8. Upload the provided `manifest.xml` file and click next.
+   <img width="1902" height="938" alt="Screenshot 2025-12-16 150132" src="https://github.com/user-attachments/assets/6cb7fe6a-6ff3-4570-8b95-dd52b3d557ab" />
 
-1. **Manifest**
-   - Upload the provided `manifest.xml`.
+9. Select **Entire organization** and click next.
+   <img width="1913" height="942" alt="Screenshot 2025-12-16 150249" src="https://github.com/user-attachments/assets/cc3107df-a826-40fb-bb1a-713eb594e44e" />
 
-2. **Target**
-   - Select **Entire organization**.
+10. Accept permissions requests by clicking next and then click finish to deploy in the next step.
+   <img width="1913" height="937" alt="Screenshot 2025-12-16 151746" src="https://github.com/user-attachments/assets/dd945fb8-8563-4cce-814c-e68bb068ef76" />
 
-3. **Installation**
-   - Select **Force install** (recommended).
 
----
-
-### Availability Timeline
-
-After deployment:
-
-1. **Propagation**
-   - Organization-wide deployment can take up to **24 hours** to complete.
-
-2. **Client Refresh**
-   - Users may need to:
-     - Restart **Outlook Desktop**, or
-     - Refresh **Outlook Web**
-   to see the add-in.
+**Availability** Organization-wide deployment can take up to **24 hours**; users may need to restart **Outlook Desktop** or refresh **Outlook Web** to see the add-in.
 
 ## Summary
 Endpoint: Reports via /report?rid=...
-
-Flexibility: No domains are hardcoded.
 
 Template Marker: BRIXEON_REPORT_URL:{{.BaseURL}}/report?rid={{.RId}}
 
