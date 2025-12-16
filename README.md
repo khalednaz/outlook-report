@@ -9,14 +9,12 @@ This document explains how the Brixeon Outlook Report Phishing add-in integrates
 1. A user opens an email in Outlook (Web or Desktop).
 2. The user clicks **Report Phishing** from the Brixeon Outlook add-in.
 3. The add-in scans the email body and extracts a reporting URL:
-
+ ```js
 /report?rid=<RID>
+```
 
-csharp
-Copy code
-
-4. No domain is hardcoded.
-5. The add-in sends a request to the phishing system:
+5. No domain is hardcoded.
+6. The add-in sends a request to the phishing system:
 
 GET https://<BASE_URL>/report?rid=<RID>
 
