@@ -66,7 +66,9 @@ function hitReportEndpoint_(url, cb) {
     .catch(function (err) {
       cb({ ok: false, code: 0, err: String(err) });
     });
-} 
+}
+
+```
 ```text
 Phishing system: how /report?rid=... is processed
 
@@ -89,6 +91,7 @@ func ReportHandler(w http.ResponseWriter, r *http.Request) {
 
   w.WriteHeader(http.StatusNoContent)
 }
+```
 go
 Copy code
 func (r *Result) HandleEmailReport(details EventDetails) error {
