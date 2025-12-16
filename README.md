@@ -1,4 +1,4 @@
-Brixeon Outlook Report Phishing Add-in
+#Brixeon Outlook Report Phishing Add-in
 This repository contains the documentation and logic for the Brixeon Outlook Report Phishing add-in. It explains how the add-in integrates with the phishing system, user reporting workflows, template requirements, and Microsoft 365 deployment.
 
 ## 1. System Logic & Integration
