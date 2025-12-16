@@ -101,20 +101,22 @@ The campaign results dashboard shows the email as Reported.
 
 ## 2. How a User Reports an Email (Usage)
 ### User Steps (Outlook)
-Open the suspicious email in Outlook.
+1. Open the suspicious email in Outlook.
+   <img width="1535" height="890" alt="Screenshot 2025-12-16 140647" src="https://github.com/user-attachments/assets/a945e069-7b75-4754-8f3d-cb72955a6106" />
+   
+3. Click the "Brixeon – Report Phishing" button.
+   <img width="1288" height="815" alt="Screenshot 2025-12-16 140828" src="https://github.com/user-attachments/assets/bc960f34-d43a-4153-9d6f-eec2a988e86e" />
+   
 
-Click the "Brixeon – Report Phishing" button.
+5. Wait for the add-in to process:
 
-Wait for the add-in to process:
-
-Scans the email body for the report URL.
-
-Contacts the phishing system.
-
-Displays immediate feedback.
+     1. Scans the email body for the report URL.
+     2. Contacts the phishing system.
+     3. Displays immediate feedback.
 
 ### User Feedback Notifications
 The add-in provides clear visual cues upon completion:
+
 
 Success
 
