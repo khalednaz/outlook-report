@@ -65,7 +65,7 @@ function hitReportEndpoint_(url, cb) {
 
 ```
 
-Phishing system: how /report?rid=... is processed
+### Phishing system: how /report?rid=... is processed
 
 When the phishing system receives the /report request:
 
@@ -99,156 +99,87 @@ End result
 
 The campaign results dashboard shows the email as Reported.
 
-## 2. How a user reports an email (usage)
-User steps (Outlook)
+## 2. How a User Reports an Email (Usage)
+### User Steps (Outlook)
 Open the suspicious email in Outlook.
 
-Click Brixeon – Report Phishing.
+Click the "Brixeon – Report Phishing" button.
 
-The add-in:
+Wait for the add-in to process:
 
-Reads the email body
+Scans the email body for the report URL.
 
-Finds the report URL
+Contacts the phishing system.
 
-Calls the phishing system
+Displays immediate feedback.
 
-Displays feedback to the user
+### User Feedback Notifications
+The add-in provides clear visual cues upon completion:
 
-What the user sees
 Success
 
-nginx
-Copy code
+Plaintext
+
 Reported successfully
 Failure
 
-arduino
-Copy code
+Plaintext
+
 Couldn’t find a report link
-Failures typically indicate that the email template is missing the required reporting marker.
+[!NOTE] Failures typically indicate that the email template is missing the required reporting marker.
 
-3. Email template requirement
-Required marker in the email template
-Every phishing email must include the following marker:
+## 3. Email Template Requirement
+### Required Marker
+Every phishing email template must include the following marker to be compatible with the add-in:
 
-bash
-Copy code
+Plaintext
+
 BRIXEON_REPORT_URL:{{.BaseURL}}/report?rid={{.RId}}
-This marker may be placed:
+Placement Options:
 
-In the footer
+In the email footer.
 
-In small or hidden text
+As small or hidden text.
 
-Anywhere in the email body
+Anywhere in the email body.
 
-The add-in supports both formats:
+### Why {{.BaseURL}} is Required
+✅ Correct Usage ({{.BaseURL}}): Contains only the scheme + host.
 
-BRIXEON_REPORT_URL:...
+Result: https://example.com/report?rid=abc123
 
-BRIXEON_REPORT_URL=...
+❌ Incorrect Usage ({{.URL}}): Includes existing paths and query strings.
 
-Why this marker is required
-Prevents hardcoding domains
+Result: https://example.com/login?rid=abc123/report?rid=abc123 (Invalid)
 
-Works across:
+## 4. Deployment (Microsoft 365 Admin Console)
+### Centralized Deployment
+Administrators should deploy the add-in via the Microsoft 365 Admin Center:
 
-Production
+Settings → Integrated apps → Add-ins → Deploy Add-in → Upload custom apps
 
-Staging
+### Recommended Settings
+During the deployment wizard, ensure the following are selected:
 
-Testing
+Manifest: Upload the provided manifest.xml.
 
-Allows the add-in to dynamically locate the reporting endpoint
+Target: Select "Entire organization".
 
-Why {{.URL}} must not be used
-{{.URL}} already includes a path and query string.
+Installation: "Force install" (Recommended).
 
-Using it can produce invalid URLs such as:
+### Availability Timeline
+Propagation: Global deployment can take up to 24 hours.
 
-bash
-Copy code
-https://example.com/login?rid=abc123/report?rid=abc123
-Why {{.BaseURL}} is correct
-{{.BaseURL}} contains only:
+Client Refresh: Users may need to restart Outlook Desktop or refresh Outlook Web to see the changes.
 
-nginx
-Copy code
-scheme + host
-Resulting in a clean reporting URL:
+## Summary
+Endpoint: Reports via /report?rid=...
 
-arduino
-Copy code
-https://example.com/report?rid=abc123
-4. Deployment (Microsoft 365 Admin Console)
-Centralized deployment
-Deploy the Outlook add-in via the Microsoft 365 Admin Center:
+Flexibility: No domains are hardcoded.
 
-powershell
-Copy code
-Settings → Integrated apps → Add-ins
-→ Deploy Add-in / Upload custom apps
-Recommended deployment settings
-During the deployment wizard:
+Template Marker: BRIXEON_REPORT_URL:{{.BaseURL}}/report?rid={{.RId}}
 
-Upload manifest.xml
-
-Select Entire organization (or a specific group)
-
-Choose installation behavior:
-
-Force install (recommended), or
-
-Allow users to install
-
-When users will see the add-in
-Organization-wide deployments can take up to 24 hours
-
-This delay is expected and normal
-
-Users may need to:
-
-Restart Outlook Desktop
-
-Refresh Outlook Web
-
-Expected appearance time: within one day
-
-Summary
-The Outlook add-in reports phishing using /report?rid=...
-
-No domains are hardcoded
-
-Email templates must include:
-
-bash
-Copy code
-BRIXEON_REPORT_URL:{{.BaseURL}}/report?rid={{.RId}}
-Deployment is handled centrally via Microsoft 365
-
-Organization-wide availability may take up to 24 hours
-
-markdown
-Copy code
-
----
-
-### Why this will now work
-- Uses **only GitHub-supported Markdown**
-- Matches the syntax in the docs you linked
-- Renders cleanly on GitHub
-- No mixed formatting
-- No visual hacks
-- No surprises
-
-If you want, next we can:
-- Reduce verbosity (shorter README)
-- Split into `/docs/` files
-- Create a **customer-facing** vs **internal** version
-
-But structurally — **this is now correct GitHub Markdown**.
-
+Availability: Org-wide rollout completes within 24 hours.
 
 
 
